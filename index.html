@@ -60,12 +60,18 @@
       #spacer {
         height: 202px
       }
+	  
+	  #content {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		gap: 20px
+	  }
 
-      #social {
+      #social, #things {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        margin-left: 3px;
+        margin-left: 2px;
         width: fit-content;
         outline: 3px solid black
       }
@@ -74,9 +80,14 @@
         display: flex;
         align-items: center
       }
+	  
+	  #countdown {
+        display: grid;
+		place-items: center
+      }
 
       @media (max-width: 768px) {
-        h1 {
+        h1:not(#time) {
           font-size: 50px
         }
         p {
@@ -85,12 +96,12 @@
         #welcome-texts {
           margin-left: 20px
         }
-        #social {
-          margin-left: 2px;
+        #social, #things {
           outline: 2px solid black
         }
         #shrinked {
-          left: 30px
+          left: 30px;
+		  font-size: 20px
         }
       }
     </style>
@@ -105,31 +116,46 @@
       <p id="shrinked">ImAGuyLikeCodin's website</p>
     </div>
     <div id="spacer"></div>
-    <div id="social">
-      <p>My social:</p>
-      <div id="medias">
-        <div id="twitter">
-          <a href="https://twitter.com/ImAGuyLikeCodin/">
-            <img src="https://raw.githubusercontent.com/Nguyenwasd72/Nguyenwasd72/main/icons/twitter.png" alt="we are not calling this x" style="width:50px; height:50px;">
-          </a>
-        </div>
-        <div id="reddit">
-          <a href="https://reddit.com/user/KNguyen_8442">
-            <img src="https://raw.githubusercontent.com/Nguyenwasd72/Nguyenwasd72/main/icons/reddit.png" alt="reddit" style="width:50px; height:50px">
-          </a>
-        </div>
-        <div id="discord">
-          <a href="https://discord.com/users/884019263160062002">
-            <img src="https://raw.githubusercontent.com/Nguyenwasd72/Nguyenwasd72/main/icons/discord.png" alt="discord" style="width:50px; height:50px">
-          </a>
-        </div>
-        <div id="github">
-          <a href="https://github.com/Nguyenwasd72/">
-            <img src="https://raw.githubusercontent.com/Nguyenwasd72/nguyenwasd72.github.io/main/github.png" alt="github" style="width:50px; height:50px;">
-          </a>
-        </div>
-      </div>
-    </div>
+	<div id="content">
+		<div id="social">
+		  <p>My social:</p>
+		  <div id="medias">
+			  <div id="twitter">
+			    <a href="https://twitter.com/ImAGuyLikeCodin/">
+				    <img src="https://raw.githubusercontent.com/Nguyenwasd72/Nguyenwasd72/main/icons/twitter.png" alt="we are not calling this x" style="width:50px; height:50px;">
+			    </a>
+			  </div>
+			  <div id="reddit">
+			    <a href="https://reddit.com/user/KNguyen_8442">
+				    <img src="https://raw.githubusercontent.com/Nguyenwasd72/Nguyenwasd72/main/icons/reddit.png" alt="reddit" style="width:50px; height:50px">
+			    </a>
+			  </div>
+			  <div id="discord">
+			    <a href="https://discord.com/users/884019263160062002">
+				    <img src="https://raw.githubusercontent.com/Nguyenwasd72/Nguyenwasd72/main/icons/discord.png" alt="discord" style="width:50px; height:50px">
+			    </a>
+			  </div>
+			  <div id="github">
+			    <a href="https://github.com/Nguyenwasd72/">
+				    <img src="https://raw.githubusercontent.com/Nguyenwasd72/nguyenwasd72.github.io/main/github.png" alt="github" style="width:50px; height:50px;">
+			    </a>
+			  </div>
+		  </div>
+		</div>
+		<div id="things">
+			<p>Cool things I made:</p>
+			<div id="countdown" style="outline: 2px solid black; margin-left: 4px; margin-top: 4px;">
+				<p>A normal 10 minutes countdown</p>
+				<a href="https://nguyenwasd72.github.io/countdown">
+					<div id="timer" style="background-color: black; display: flex; align-items: baseline; width: 160px; height: 40px;">
+						<h1 id="time" style="font-family: Calibri, sans-serif; color: lime; margin-left: 5px; margin-top: 0;">10:00</h1>
+						<p style="font-family: Calibri, sans-serif; color: lime; font-size: x-large; font-weight: bold; margin: 0;">.00</p>
+					</div>
+				</a>
+				<p style="font-size: 15px">Inspired by <a href="https://youtu.be/FTUdUAfcsfY" target="_blank" rel="noopener noreferrer">DougDoug's 10 minutes stream</a></p>
+			</div>
+		</div>
+	</div>
     <div style="height: 1000px"><!--scroll test--></div>
     <script>
       const welcome = document.getElementById("welcome")
