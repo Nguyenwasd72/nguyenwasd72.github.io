@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10 minutes countdown real</title>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/97346078">
+    <style>
+        #timer {
+            display: flex;
+            align-items: baseline;
+            width: 160px;
+            height: 40px;
+        }
+
+        h1 {
+            font-family: Calibri, sans-serif;
+            color: lime;
+            margin-left: 5px;
+            margin-top: 0;
+        }
+
+        p {
+            font-family: Calibri, sans-serif;
+            color: lime;
+            font-size: x-large;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        #bee {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .hide {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <p1 id="how_long" style="font-family: Arial, sans-serif;">1 second = 1 seconds</p1>
+    <div id="timer" style="background-color: black;">
+        <h1 id="time">10:00</h1>
+        <p>.00</p>
+    </div>
+    <button onclick="start(); this.remove()">Start countdown</button>
+    <img id="bee" class="hide" src="./bee.jpg">
+    <audio id="bzz">
+        <source src="./bee.mp3" type="audio/mpeg">
+    </audio>
+    <script>
+        const clock = document.getElementById("timer")
+        const time = document.getElementById("time")
+        const how_long = document.getElementById("how_long")
+        const bee = document.getElementById("bee")
+        const bzz = document.getElementById("bzz")
+        let sleep = 0
+        let time_left = 600
+        let how_long_is_a_second = 1
+        let hour, minute, second
+        let timer
+        function start() {
+            clearInterval(timer)
+            timer = setInterval(() => {
+                hour = Math.floor(time_left / 3600)
+                minute = Math.floor((time_left % 3600) / 60)
+                second = time_left % 60
+                time.textContent = `${hour == 0 ? "" : hour.toString().padStart(2, "0") + ":"}${minute.toString().padStart(2, "0")}:${second.toString().padStart(2, "0")}`
+                if (time_left <= 0) {
+                    how_long.textContent = "10 minutes over!!"
+                }
+                if (time_left > 0) {
+                    if (sleep > 0) {
+                        sleep--
+                        if (sleep <= 0) {
+                            bee.classList.add("hide")
+                            bzz.pause()
+                            bzz.currentTime = 0
+                        }
+                        return
+                    }
+                    let randy = Math.floor(Math.random() * 100) + 1
+                    // yes i copied all of doug's comments
+                    if (randy <= 5) {
+                        // 5% it adds second
+                        time_left++
+                    } else if (randy <= 6) {
+                        // 1% that it adds a MINUTE
+                        time_left += 60
+                    } else if (randy <= 7) {
+                        // 1% chacne that drops a MINUTE
+                        time_left -= 60
+                    } else if (randy <= 12) {
+                        // 5% that it freezes for 5 "seconds"
+                        sleep = 4 * how_long_is_a_second
+                    } else if (randy <= 13) {
+                        // 1% chance that it doubles
+                        time_left *= 2
+                    } else if (randy <= 14) {
+                        // 1% chance that it halves
+                        time_left = Math.floor(time_left / 2)
+                    } else if (randy <= 15) {
+                        // 1% that the seconds and the minutes swap
+                        time_left = (second * 60) + minute
+                    } else if (randy <= 16) {
+                        // 1% it rounds to the nearest minute
+                        time_left = Math.round(time_left / 60) * 60
+                    } else if (randy <= 17) {
+                        // 1% for timer to move to random spot
+                        clock.style.marginTop = `${Math.floor(Math.random() * (window.innerHeight-76))}px`
+                        clock.style.marginLeft = `${Math.floor(Math.random() * (window.innerWidth-176))}px`
+                    } else if (randy <= 18) {
+                        // 1% change a second becomes twice as fast
+                        how_long_is_a_second /= 2
+                        how_long.textContent = `1 second = ${how_long_is_a_second} seconds`
+                        start()
+                    } else if (randy <= 19) {
+                        // 1% change a second becomes twice as long
+                        how_long_is_a_second *= 2
+                        how_long.textContent = `1 second = ${how_long_is_a_second} seconds`
+                        start()
+                    } else if (randy <= 20) {
+                        // 1% BEE MODE
+                        bee.classList.remove("hide")
+                        bzz.play()
+                        sleep = how_long_is_a_second
+                    } else if (randy <= 21) {
+                        if (Math.floor(Math.random() * 2) + 1 == 2) {
+                            how_long_is_a_second = 1
+                            how_long.textContent = `1 second = ${how_long_is_a_second} seconds`
+                            start()
+                        }
+                    } else {
+                        time_left--
+                    }
+                }
+            }, how_long_is_a_second * 1000)
+        }
+    </script>
+</body>
+</html>
