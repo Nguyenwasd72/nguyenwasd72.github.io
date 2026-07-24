@@ -75,6 +75,17 @@
 				width: fit-content;
 				outline: 3px solid black
 			}
+			
+			#things {
+				flex-grow: 1
+			}
+			
+			#thing {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				gap: 10px
+			}
 
 			#medias {
 				display: flex;
@@ -83,7 +94,11 @@
 		
 			#countdown {
 				display: grid;
-				place-items: center
+				place-items: center;
+				outline: 2px solid black;
+				margin-left: 4px;
+				margin-top: 4px;
+				width: fit-content
 			}
 
 			@media (max-width: 768px) {
@@ -112,8 +127,23 @@
 		</div>
 		<div id="spacer"></div>
 		<div id="content">
+			<div id="things">
+				<h1 style="font-weight: normal;">Cool things I made:</h1>
+				<div id="thing">
+					<div id="countdown">
+						<p>A normal 10 minutes countdown</p>
+						<a href="https://nguyenwasd72.github.io/countdown" style="text-decoration: none;">
+							<div id="timer" style="background-color: black; display: flex; align-items: baseline; width: 160px; height: 40px;">
+								<h1 id="time" style="font-family: Calibri, sans-serif; color: lime; margin-left: 5px; margin-top: 0;">10:00</h1>
+								<p style="font-family: Calibri, sans-serif; color: lime; font-size: x-large; font-weight: bold; margin: 0;">.00</p>
+							</div>
+						</a>
+						<p style="font-size: 15px">Inspired by <a href="https://youtu.be/FTUdUAfcsfY" target="_blank" rel="noopener noreferrer">DougDoug's 10 minutes stream</a></p>
+					</div>
+				</div>
+			</div>
 			<div id="social">
-				<p>My social:</p>
+				<p style="font-size: 20px;">My social:</p>
 				<div id="medias">
 					<div id="twitter">
 						<a href="https://twitter.com/ImAGuyLikeCodin/">
@@ -135,19 +165,6 @@
 							<img src="https://raw.githubusercontent.com/Nguyenwasd72/nguyenwasd72.github.io/main/github.png" alt="github" style="width:50px; height:50px;">
 						</a>
 					</div>
-				</div>
-			</div>
-			<div id="things">
-				<p>Cool things I made:</p>
-				<div id="countdown" style="outline: 2px solid black; margin-left: 4px; margin-top: 4px;">
-					<p>A normal 10 minutes countdown</p>
-					<a href="https://nguyenwasd72.github.io/countdown" style="text-decoration: none;">
-						<div id="timer" style="background-color: black; display: flex; align-items: baseline; width: 160px; height: 40px;">
-							<h1 id="time" style="font-family: Calibri, sans-serif; color: lime; margin-left: 5px; margin-top: 0;">10:00</h1>
-							<p style="font-family: Calibri, sans-serif; color: lime; font-size: x-large; font-weight: bold; margin: 0;">.00</p>
-						</div>
-					</a>
-					<p style="font-size: 15px">Inspired by <a href="https://youtu.be/FTUdUAfcsfY" target="_blank" rel="noopener noreferrer">DougDoug's 10 minutes stream</a></p>
 				</div>
 			</div>
 		</div>
